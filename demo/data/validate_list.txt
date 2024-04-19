@@ -1,0 +1,23 @@
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/3-gray hound-test/8.jpg 2
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/3-gray hound-test/13.jpg 2
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/3-gray hound-test/3.jpg 2
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/1-basset-test/1-basset-test1.jpg 0
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/1-basset-test/1-basset-test12.jpg 0
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/2-beagle-test/17.jpg 1
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/2-beagle-test/5.jpg 1
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/8-cocker-test/14.jpg 7
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/8-cocker-test/18.jpg 7
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/7-labrador-test/8.jpg 6
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/7-labrador-test/11.jpg 6
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/7-labrador-test/3.jpg 6
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/10-shetland-test/12.jpg 9
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/10-shetland-test/6.jpg 9
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/6-springer spaniel-test/17.jpg 5
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/6-springer spaniel-test/5.jpg 5
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/9-old english sheepdog-test/14.jpg 8
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/9-old english sheepdog-test/18.jpg 8
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/5-schnauzer-test/8.jpg 4
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/5-schnauzer-test/11.jpg 4
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/5-schnauzer-test/3.jpg 4
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/4-german shepherd-test/12.jpg 3
+/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/test-dog10/4-german shepherd-test/5.jpg 3

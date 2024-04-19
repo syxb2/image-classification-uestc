@@ -1,0 +1,10 @@
+3-gray hound-test
+1-basset-test
+2-beagle-test
+8-cocker-test
+7-labrador-test
+10-shetland-test
+6-springer spaniel-test
+9-old english sheepdog-test
+5-schnauzer-test
+4-german shepherd-test
