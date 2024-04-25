@@ -7,7 +7,7 @@
 You can use:
 
 ```python
-!pip install paddlehub==1.7.0 -i https://pypi.tuna.tsinghua.edu.cn/simpl
+!pip install paddlehub==1.7.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 to install the dependence
