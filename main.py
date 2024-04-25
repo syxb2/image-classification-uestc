@@ -1,170 +1,132 @@
-"""
-README
+import paddle
+import paddlehub as hub
+from paddlehub.dataset.base_cv_dataset import BaseCVDataset
+import numpy as np
+from sklearn.metrics import confusion_matrix
 
-使用说明:
-1、运行前请先设置 DATAPATH 为相应的路径（48行）
-2、将 DATAPATH 路径的文件设置为如下所示：
-{
-DATAPATH
-├── test
-│   ├── 1-bread
-│   ├── 2-dessert
-│   ├── 3-egg
-│   ├── 4-meat
-│   └── 5-noodles
-├── train
-│   ├── 1-bread
-│   ├── 2-dessert
-│   ├── 3-egg
-│   ├── 4-meat
-│   └── 5-noodles
-└── validate
-    ├── 1-bread
-    ├── 2-dessert
-    ├── 3-egg
-    ├── 4-meat
-    └── 5-noodles
-}
-3、各个 list 将生成在 DATAPATH 目录下
-
-运行结果:
-[INFO] DATAPATH = /Users/baijiale/Documents/Code/aistudio/data
-[INFO] FOLDERNAMELIST = ['2-dessert', '5-noodles', '4-meat', '3-egg', '1-bread']
-[INFO] train_count = 896
-[INFO] train list generating finished
-[INFO] test_count = 104
-[INFO] test list generating finished
-[INFO] validate_count = 108
-[INFO] validate list generating finished
-[INFO] label_count = 5
-[INFO] label list generating finished
-[INFO] data = ['/Users/baijiale/Documents/Code/aistudio/data/validate/2-dessert/8.jpg', '/Users/baijiale/Do......
-[INFO] data_count = 108
-[INFO] the list "data" generating finished
-"""
-
-import os
-
-DATAPATH = "/Users/baijiale/Documents/Code/aistudio/data"
-print("[INFO] DATAPATH = %s" % DATAPATH)
+import dataGenerating
+import finetune
 
 
-def init_folders_list(list) -> list:
-    # init list "list"
-    list = os.listdir(
-        DATAPATH + "/train"
-    )  # os.listdir() 方法用于返回指定的文件夹包含的文件或文件夹的名字的列表。
-    if ".DS_Store" in list:
-        list.remove(".DS_Store")
-    if ".ipynb_checkpoints" in list:
-        list.remove(".ipynb_checkpoints")
-
-    print("[INFO] FOLDERNAMELIST = %s" % list)
-
-    return list
-
-
-FOLDERNAMELIST = []
-FOLDERNAMELIST = init_folders_list(list=FOLDERNAMELIST)
-
-
-def generate_data_list_txt(dataset) -> None:
-    # init the pointer p which points to "train_list.txt"
-    p = open(DATAPATH + "/" + dataset + "_list.txt", "w")
-
-    # init the variable "count" which is used to count the number of values (count of pictures in "dataset")
-    count = 0
-
-    # generate "train_list.txt"
-    for fld_name in FOLDERNAMELIST:
-        image_names = os.listdir(DATAPATH + "/" + dataset + "/" + fld_name)
-        for img_name in image_names:
-            if img_name != ".DS_Store":
-                p.write(
-                    DATAPATH
-                    + "/"
-                    + dataset
-                    + "/"
-                    + fld_name
-                    + "/"
-                    + img_name
-                    + " "
-                    + (str(int(fld_name.split("-")[0]) - 1))
-                    + "\n"
-                )
-                count = count + 1
-
-    print("[INFO] %s_count = %d" % (dataset, count))
-    print("\033[32m[INFO] %s list generating finished\033[0m" % dataset)
-
-    p.close()
-
-    return
-
-
-def generate_label_list_txt() -> None:
-    # init the pointer plabel which points to "validate_list.txt"
-    plable = open(DATAPATH + "/label_list.txt", "w")
-
-    # init the variable "label_count" which is used to count the number of values
-    label_count = 0
-
-    # generate label_list
-    for fld_name in FOLDERNAMELIST:
-        if fld_name != ".DS_Store":
-            plable.write(fld_name + "-test" + "\n")  # .split("-")[1]
-            label_count = label_count + 1
-
-    print("[INFO] label_count = %d" % label_count)
-    print("\033[32m[INFO] label list generating finished\033[0m")
-
-    plable.close()
-
-    return
-
-
-# 生成最终预测时需要的 “data”
-def generate_data_list(dataset) -> list:
-    imgpath_list = []
-    data_count = 0
-    for folder_name in FOLDERNAMELIST:
-        img_paths = os.listdir(
-            DATAPATH
-            + "/"
-            + dataset
-            + "/"
-            + folder_name
-        )
-        for img in img_paths:
-            imgpath_list.append(
-                DATAPATH
-                + "/"
-                + dataset
-                + "/"
-                + folder_name
-                + "/"
-                + img
-            )
-            data_count = data_count + 1
-    print("[INFO] data = %s" % imgpath_list)
-    print("[INFO] data_count = %d" % data_count)
-    print("\033[32m[INFO] the list \"data\" generating finished\033[m" )
-
-    return imgpath_list
-
-
-
+# ------------------------------- main ------------------------------
 def main() -> None:
-    generate_data_list_txt(dataset="train")
-    generate_data_list_txt(dataset="test")
-    generate_data_list_txt(dataset="validate")
+    dataGenerating.generate_data_list_txt(dataset="train")
+    dataGenerating.generate_data_list_txt(dataset="test")
+    dataGenerating.generate_data_list_txt(dataset="validate")
 
-    generate_label_list_txt()
+    dataGenerating.generate_label_list_txt()
 
     data = []
-    data = generate_data_list("validate")
+    data = dataGenerating.generate_data_list("validate")
 
-    return 
+    # ---------------------------------------------------- end of generating list ----------------------------------------------------
+    # ---------------------------------------------------- start of finetune and prediction----------------------------------------------------
+
+    class DemoDataset(BaseCVDataset):
+        def __init__(self):
+            # 数据集存放位置
+            self.dataset_dir = "/home/aistudio/data"
+            super(DemoDataset, self).__init__(
+                base_path=self.dataset_dir,
+                train_list_file="train_list.txt",
+                validate_list_file="validate_list.txt",
+                test_list_file="test_list.txt",
+                # predict_file="predict_list.txt",
+                label_list=["bread", "dessert", "egg", "meat", "noodles"],
+            )
+
+    data_reader = hub.reader.ImageClassificationReader(
+        image_width=module.get_expected_image_width(),  # 预期图片经过reader处理后的图像宽度
+        image_height=module.get_expected_image_height(),  # 预期图片经过reader处理后的图像高度
+        images_mean=module.get_pretrained_images_mean(),  # 进行图片标准化处理时所减均值。默认为None
+        images_std=module.get_pretrained_images_std(),  # 进行图片标准化处理时所除标准差。默认为None
+        dataset=dataset,
+    )
+
+    config = hub.RunConfig(
+        use_cuda=False,  # 是否使用GPU训练，默认为False；
+        num_epoch=4,  # Fine-tune的轮数；使用4轮，直到训练准确率达到90%多
+        checkpoint_dir="cv_finetune_turtorial_demo",  # 模型checkpoint保存路径, 若用户没有指定，程序会自动生成；
+        batch_size=32,  # 训练的批大小，如果使用GPU，请根据实际情况调整batch_size；
+        eval_interval=50,  # 模型评估的间隔，默认每100个step评估一次验证集；
+        strategy=hub.finetune.strategy.DefaultFinetuneStrategy(),
+    )  # Fine-tune优化策略；
+
+    # 获取module的上下文信息包括输入、输出变量以及paddle program
+    input_dict, output_dict, program = module.context(trainable=True)
+
+    # 待传入图片格式
+    img = input_dict["image"]
+
+    # 从预训练模型的输出变量中找到最后一层特征图，提取最后一层的feature_map
+    feature_map = output_dict["feature_map"]
+
+    # 待传入的变量名字列表
+    feed_list = [img.name]
+
+    task = hub.ImageClassifierTask(
+        data_reader=data_reader,  # 提供数据的Reader
+        feed_list=feed_list,  # 待feed变量的名字列表
+        feature=feature_map,  # 输入的特征矩阵
+        num_classes=dataset.num_labels,  # 分类任务的类别数量，此处来自于数据集的num_labels
+        config=config,
+    )  # 运行配置
+
+    run_states = (
+        task.finetune_and_eval()
+    )  # 通过众多finetune API中的finetune_and_eval接口，可以一边训练网络，一边打印结果
+
+    imgpath_lst = []
+    val_file = open("/home/aistudio/data/validate_list.txt")
+    file_lines = val_file.readlines()
+    for file_line in file_lines:
+        imgpath_lst.append(file_line.split(".")[0] + ".jpg")
+    val_file.close()
+
+    # 此处传入需要识别的照片地址，可以是一个地址，也可以是个地址列表
+    # 此处可以参考群内《paddlehub制作自定义数据集》最后一个示例
+    data = imgpath_lst
+
+    label_map = dataset.label_dict()
+    index = 0
+
+    # get classification result
+    run_states = task.predict(data=data)  # 进行预测
+    results = [
+        run_state.run_results for run_state in run_states
+    ]  # 得到用新模型预测test照片的结果
+
+    truelable_lst = []
+    prelable_lst = []
+    for batch_result in results:
+        # get predict index
+        batch_result = np.argmax(batch_result, axis=2)[0]
+        for result in batch_result:
+            index += 1
+            result = label_map[result]
+            truelable_lst.append((data[index - 1].split("/")[5]).split("-")[1])
+            prelable_lst.append(result)
+    xresult_dict = zip(truelable_lst, prelable_lst)
+    # 后续代码
+    """
+    xmatx = np.zeros((6,5))
+    numdic ={'bread': 0, 'dessert': 1, 'egg': 2, 'meat': 3, 'noodles': 4}
+    for item in xresult_dict:
+        xmatx[numdic[item[0]]][numdic[item[1]]] += 1  # dic[i][0] is the real class of path i.
+    print(xmatx)
+    """
+
+    cm = confusion_matrix(y_true, y_pred)
+    y_true = truelable_lst
+    y_pred = prelable_lst
+
+    # 结果评估
+    finetune.plot_confusion_matrix(
+        cm, ["bread", "dessert", "egg", "meat", "noodles"], "ConfusedMatrix"
+    )
+    finetune.result_evalution(truelable_lst, prelable_lst)
+
+    return
 
 
 # execute the program
