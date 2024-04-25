@@ -1,8 +1,8 @@
 import math
 import os
 import numpy as np
-from PIL import Image
 import random
+from PIL import Image
 
 
 def OneMultplt(A, B, i=0, j=0):
