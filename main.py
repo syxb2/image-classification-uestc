@@ -4,20 +4,20 @@ from paddlehub.dataset.base_cv_dataset import BaseCVDataset
 import numpy as np
 from sklearn.metrics import confusion_matrix
 
-import dataGenerating
+import dataListGenerating
 import finetune
 
 
 # ------------------------------- main ------------------------------
 def main() -> None:
-    dataGenerating.generate_data_list_txt(dataset="train")
-    dataGenerating.generate_data_list_txt(dataset="test")
-    dataGenerating.generate_data_list_txt(dataset="validate")
+    dataListGenerating.generate_data_list_txt(dataset="train")
+    dataListGenerating.generate_data_list_txt(dataset="test")
+    dataListGenerating.generate_data_list_txt(dataset="validate")
 
-    dataGenerating.generate_label_list_txt()
+    dataListGenerating.generate_label_list_txt()
 
     data = []
-    data = dataGenerating.generate_data_list("validate")
+    data = dataListGenerating.generate_data_list("validate")
 
     # ---------------------------------------------------- end of generating list ----------------------------------------------------
     # ---------------------------------------------------- start of finetune and prediction----------------------------------------------------
