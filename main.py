@@ -9,7 +9,6 @@ import dataListGenerating
 import finetune
 
 
-# ------------------------------- main ------------------------------
 def main() -> None:
     dataListGenerating.generate_data_list_txt(dataset="train")
     dataListGenerating.generate_data_list_txt(dataset="test")
@@ -19,9 +18,6 @@ def main() -> None:
 
     data = []
     data = dataListGenerating.generate_data_list("validate")
-
-    # ---------------------------------------------------- end of generating list ----------------------------------------------------
-    # ---------------------------------------------------- start of finetune and prediction----------------------------------------------------
 
     class DemoDataset(BaseCVDataset):
         def __init__(self):
@@ -130,6 +126,6 @@ def main() -> None:
     return
 
 
-# execute the program
+# execute the code
 if __name__ == "__main__":
     main()
