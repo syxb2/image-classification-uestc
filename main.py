@@ -19,10 +19,13 @@ def main() -> None:
     data = []
     data = dataListGenerating.generate_data_list("validate")
 
+    paddle.enable_static()
+    module = hub.Module(name="resnet_v2_50_imagenet") 
+
     class DemoDataset(BaseCVDataset):
         def __init__(self):
             # 数据集存放位置
-            self.dataset_dir = "/home/aistudio/data"
+            self.dataset_dir = dataListGenerating.DATAPATH
             super(DemoDataset, self).__init__(
                 base_path=self.dataset_dir,
                 train_list_file="train_list.txt",
@@ -74,7 +77,7 @@ def main() -> None:
     )  # 通过众多finetune API中的finetune_and_eval接口，可以一边训练网络，一边打印结果
 
     imgpath_lst = []
-    val_file = open("/home/aistudio/data/validate_list.txt")
+    val_file = open(dataListGenerating.DATAPATH + "/" + "validate_list.txt")
     file_lines = val_file.readlines()
     for file_line in file_lines:
         imgpath_lst.append(file_line.split(".")[0] + ".jpg")
