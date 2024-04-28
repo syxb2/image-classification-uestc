@@ -76,17 +76,6 @@ def main() -> None:
         task.finetune_and_eval()
     )  # 通过众多finetune API中的finetune_and_eval接口，可以一边训练网络，一边打印结果
 
-    imgpath_lst = []
-    val_file = open(dataListGenerating.DATAPATH + "/" + "validate_list.txt")
-    file_lines = val_file.readlines()
-    for file_line in file_lines:
-        imgpath_lst.append(file_line.split(".")[0] + ".jpg")
-    val_file.close()
-
-    # 此处传入需要识别的照片地址，可以是一个地址，也可以是个地址列表
-    # 此处可以参考群内《paddlehub制作自定义数据集》最后一个示例
-    data = imgpath_lst
-
     label_map = dataset.label_dict()
     index = 0
 
