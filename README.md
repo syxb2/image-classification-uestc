@@ -2,7 +2,7 @@
 
 *This repositorie is used to store the image classification PBLF course's code.*
 
-### Environment: paddlepaddle 1.7.0
+### Environment: PaddleHub 1.7.0 & PaddlePaddle
 
 You can use:
 
