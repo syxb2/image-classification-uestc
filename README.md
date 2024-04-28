@@ -52,9 +52,8 @@ to install the dependencies
 ├── TODO.py
 ├── 信息与软件工程学院基于Python的图像分类项目开发实践总结报告.docx
 ├── 信息与软件工程学院基于Python的图像分类项目开发实践总结报告.pptx
+├── 基于PYTHON的图像分类小组任务.xmind
 └── 电子科技大学信软学院实验报告撰写规范.pdf
-
-33 directories, 1311 files
 ```
 
 ### Attention: The prj can be run in https://aistudio.baidu.com's visual environment
