@@ -35,6 +35,8 @@ def main() -> None:
                 label_list=["bread", "dessert", "egg", "meat", "noodles"],
             )
 
+    dataset = DemoDataset()
+
     data_reader = hub.reader.ImageClassificationReader(
         image_width=module.get_expected_image_width(),  # 预期图片经过reader处理后的图像宽度
         image_height=module.get_expected_image_height(),  # 预期图片经过reader处理后的图像高度
@@ -95,15 +97,6 @@ def main() -> None:
             result = label_map[result]
             truelable_lst.append((data[index - 1].split("/")[5]).split("-")[1])
             prelable_lst.append(result)
-    xresult_dict = zip(truelable_lst, prelable_lst)
-    # 后续代码
-    """
-    xmatx = np.zeros((6,5))
-    numdic ={'bread': 0, 'dessert': 1, 'egg': 2, 'meat': 3, 'noodles': 4}
-    for item in xresult_dict:
-        xmatx[numdic[item[0]]][numdic[item[1]]] += 1  # dic[i][0] is the real class of path i.
-    print(xmatx)
-    """
 
     cm = confusion_matrix(y_true, y_pred)
     y_true = truelable_lst
