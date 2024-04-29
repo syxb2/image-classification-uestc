@@ -2,7 +2,7 @@
 
 *This repositorie is used to store the image classification PBLF course's code.*
 
-### Environment: paddlepaddle 1.7.0
+### Environment: PaddleHub@1.7.0 & PaddlePaddle
 
 You can use:
 
@@ -56,4 +56,4 @@ to install the dependencies
 └── 电子科技大学信软学院实验报告撰写规范.pdf
 ```
 
-### Attention: The prj can be run in https://aistudio.baidu.com's visual environment
+### Attention: The prj can be run in [https://aistudio.baidu.com](https://aistudio.baidu.com)'s visual environment
