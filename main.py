@@ -98,13 +98,13 @@ def main() -> None:
             truelable_lst.append((data[index - 1].split("/")[5]).split("-")[1])
             prelable_lst.append(result)
 
-    cm = confusion_matrix(y_true, y_pred)
     y_true = truelable_lst
     y_pred = prelable_lst
+    cm = confusion_matrix(y_true, y_pred)
 
     # 结果评估
     finetune.plot_confusion_matrix(
-        cm, ["bread", "dessert", "egg", "meat", "noodles"], "ConfusedMatrix"
+        cm, ["bread", "dessert", "egg", "meat", "noodles"]
     )
     finetune.result_evalution(truelable_lst, prelable_lst)
 
