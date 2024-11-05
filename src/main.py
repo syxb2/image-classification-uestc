@@ -5,8 +5,8 @@ from paddlehub.dataset.base_cv_dataset import BaseCVDataset
 from sklearn.metrics import confusion_matrix
 
 
-import dataListGenerating
-import finetune
+import src.dataListGenerating as dataListGenerating
+import src.finetune as finetune
 
 
 def main() -> None:
