@@ -28,7 +28,7 @@ DATAPATH
 3、各个 list 将生成在 DATAPATH 目录下
 
 运行结果:
-[INFO] DATAPATH = /Users/baijiale/Documents/Code/aistudio/data
+[INFO] DATAPATH = /Users/baijiale/Code/aistudio/data
 [INFO] FOLDERNAMELIST = ['2-dessert', '5-noodles', '4-meat', '3-egg', '1-bread']
 [INFO] train_count = 896
 [INFO] train list generating finished
@@ -38,14 +38,14 @@ DATAPATH
 [INFO] validate list generating finished
 [INFO] label_count = 5
 [INFO] label list generating finished
-[INFO] data = ['/Users/baijiale/Documents/Code/aistudio/data/validate/2-dessert/8.jpg', '/Users/baijiale/Do......
+[INFO] data = ['/Users/baijiale/Code/aistudio/data/validate/2-dessert/8.jpg', '/Users/baijiale/Do......
 [INFO] data_count = 108
 [INFO] the list "data" generating finished
 """
 
 import os
 
-DATAPATH = "/Users/baijiale/Documents/Code/image_classification_semester2prj/data"
+DATAPATH = "/Users/baijiale/Code/image_classification_semester2prj/data"
 print("[INFO] DATAPATH = %s" % DATAPATH)
 
 

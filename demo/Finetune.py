@@ -25,7 +25,7 @@ class DemoDataset(BaseCVDataset):
     def __init__(self):
         # 数据集存放位置
         self.dataset_dir = (
-            "/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/data"
+            "/Users/baijiale/Code/py/aistudio/foodClassificationPj/data"
         )
         super(DemoDataset, self).__init__(
             base_path=self.dataset_dir,

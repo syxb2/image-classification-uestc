@@ -1,6 +1,6 @@
 import os
 
-path = "/Users/baijiale/Documents/Code/py/aistudio/data/test"
+path = "/Users/baijiale/Code/py/aistudio/data/test"
 folders_name = os.listdir(
     path
 )  # os.listdir() 方法用于返回指定的文件夹包含的文件或文件夹的名字的列表。
@@ -14,11 +14,11 @@ for file in folders_name:
     print(file)
 
 a = open(
-    "/Users/baijiale/Documents/Code/py/aistudio/data/train_list.txt",
+    "/Users/baijiale/Code/py/aistudio/data/train_list.txt",
     "w",
 )
 b = open(
-    "/Users/baijiale/Documents/Code/py/aistudio/data/validate_list.txt",
+    "/Users/baijiale/Code/py/aistudio/data/validate_list.txt",
     "w",
 )
 
@@ -65,7 +65,7 @@ print("合计{}个数据".format(count))
 # ---------------------------------------------------------- #
 
 d = open(
-    "/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/data/label_list.txt",
+    "/Users/baijiale/Code/py/aistudio/foodClassificationPj/data/label_list.txt",
     "w",
 )
 
@@ -84,7 +84,7 @@ print("合计{}个数据".format(count))
 # ---------------------------------------------------------- #
 
 c = open(
-    "/Users/baijiale/Documents/Code/py/aistudio/foodClassificationPj/data/test_list.txt",
+    "/Users/baijiale/Code/py/aistudio/foodClassificationPj/data/test_list.txt",
     "w",
 )
 
